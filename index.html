@@ -74,8 +74,16 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-    $("#Submit").on("click", function(){
+    $("#Submit").on("click", function(event){
+        event.preventDefault();
+        var searchRequest = $("#SearchTerm").val()
+        var query = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q="+searchRequest+"&api-key=EpH3BcuHdfZfFvuuQR7ES3vgn8uEp8M5";
 
+        $.ajax({
+            url: query,
+            mehtod: "GET"}).then(function(response) {
+                console.log(response);
+            })
     })
     $("#Clear").on("click", function(){
         $("#SearchTerm").empty();
